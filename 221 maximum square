@@ -1,0 +1,19 @@
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+ int rows=matrix.length;
+ int columns=rows>0? matrix[0].length:0;
+ int [][]dp=new int[rows+1][columns+1]; //Here the trick is the dimension of dp is one larger than the original dimension 
+                                        //e.g, if matrix is 4*3, the dimension of dp is 5*4; The initial value of dp is 0
+                                        // If we set dp is 4*3, the we need to copy the first column and the first row of matrix to dp
+ int maxsqlen=0; //must be intialized
+ for (int i=1;i<=rows;i++) 
+ for (int j=1; j<=columns;j++){ //the length is row+1. the last element is row
+ 
+ if (matrix[i-1][j-1]=='1') // dp[i][j]==1
+  {dp[i][j]=Math.min(dp[i-1][j-1], Math.min(dp[i-1][j],dp[i][j-1]))+1;
+   maxsqlen=Math.max(maxsqlen,dp[i][j]);
+  }
+ }
+ return maxsqlen*maxsqlen;
+ }
+}   
