@@ -1,0 +1,20 @@
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map= new HashMap<>();
+        for (int i=0; i<nums.length;i++){
+            map.put(nums[i],i);
+        }
+        for(int i=0;i<nums.length;i++){
+           int rest=target-nums[i];
+            
+            if(map.containsKey(rest)&&map.get(rest)!=i)
+                return new int[]{i,map.get(rest)};
+        }
+       throw new IllegalArgumentException("No such two sums");
+    }
+}
+
+//Something needs to know
+1. HashMap
+2. .length
+3. 对于[3,3] 实际上在hashmap中存的是<3,1>  <3,0>被覆盖掉了 
